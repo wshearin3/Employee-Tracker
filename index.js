@@ -9,3 +9,9 @@ const connection = mysql.createConnection({
     password: '',
     database: 'employee_tracker'
 });
+
+connection.connect(err => {
+    if (err) throw err;
+    console.log('Connected to Employee Tracker.');
+    //TODO Add function call to initialize app
+})
