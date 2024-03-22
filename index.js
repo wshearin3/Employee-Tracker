@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'employee_tracker'
+    database: 'employee_tracker_db'
 });
 
 connection.connect(err => {
