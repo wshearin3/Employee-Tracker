@@ -2,6 +2,7 @@
 
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -14,6 +15,7 @@ connection.connect(err => {
     if (err) throw err;
     console.log('Connected to Employee Tracker.');
     //TODO Add function call to initialize app
+    startTracker();
 })
 
 function startTracker() {
@@ -31,5 +33,7 @@ function startTracker() {
             'Update an Employee Role',
             'Quit',
         ]
+    }).then(answer => {
+
     })
 }
