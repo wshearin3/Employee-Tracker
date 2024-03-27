@@ -33,7 +33,7 @@ function startTracker() {
             'Update an Employee Role',
             'Quit',
         ]
-    }).then(answer => {
+    }).then((answer) => {
 
-    })
-}
+    });
+};
