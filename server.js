@@ -72,3 +72,11 @@ function viewDepartments() {
         startTracker();
     });
 };
+
+function viewRoles() {
+    connection.query('SELECT role.id, role.title, role.salary, department.name AS department FROM role LEFT JOIN department ON role.department_id', (err, res) => {
+       if (err) throw err;
+       console.table(res);
+       startTracker(); 
+    });
+};
