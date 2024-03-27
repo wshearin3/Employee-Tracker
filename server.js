@@ -33,6 +33,7 @@ function startTracker() {
             'Add an Employee',
             'Update an Employee Role',
             'End Session',
+            new inquirer.Separator("--End of Options--"),
         ]
     }).then((answer) => {
         switch (answer.action) {
@@ -62,6 +63,7 @@ function startTracker() {
                 connection.end();
                 break;
         }
+       
     });
 };
 
@@ -74,7 +76,7 @@ function viewDepartments() {
 };
 
 function viewRoles() {
-    connection.query('SELECT role.id, role.title, role.salary, department.name AS department FROM role LEFT JOIN department ON role.department_id', (err, res) => {
+    connection.query('SELECT role.id, role.title, role.salary, department.name AS department FROM role INNER JOIN department ON (department.id = role.department_id)', (err, res) => {
        if (err) throw err;
        console.table(res);
        startTracker(); 
