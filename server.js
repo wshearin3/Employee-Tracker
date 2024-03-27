@@ -35,7 +35,7 @@ function startTracker() {
             'End Session',
         ]
     }).then((answer) => {
-        switch (answers.action) {
+        switch (answer.action) {
             case 'View All Departments':
                 viewDepartments();
                 break;
