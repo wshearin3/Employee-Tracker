@@ -32,7 +32,7 @@ function startTracker() {
             'Add an Employee',
             'Update an Employee Role',
             'Quit',
-        ],
+        ]
     }).then(answer => {
 
     })
