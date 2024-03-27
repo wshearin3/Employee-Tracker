@@ -15,7 +15,21 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log('Connected to Employee Tracker.');
+    console.log(",---------------------------------------------------.");
+    console.log("|                                                   |");
+    console.log("|   _____                 _                         |");
+    console.log("|  | ____|_ __ ___  _ __ | | ___  _   _  ___  ___   |");
+    console.log("|  |  _| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\  |");
+    console.log("|  | |___| | | | | | |_) | | ( ) | |_| |  __/  __/  |");
+    console.log("|  |_____|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|  |");
+    console.log("|                  |_|            |___/             |");
+    console.log("|   _______                      _                  |");
+    console.log("|  |__   __| _ __   ___  _  ___ | | _   ___  _ __   |");
+    console.log("|     | |   | '__\\ / _ \\| |/ __\\| |/ / / _ \\| '__\\  |");
+    console.log("|     | |   | |   | (_)   | |___|   < |  __/| |     |");
+    console.log("|     |_|   |_|    \\___/|_|\\___/|_|\\_| \\___||_|     |");
+    console.log("|                                                   |");
+    console.log("`---------------------------------------------------'");
     //TODO Add function call to initialize app
     startTracker();
 })
