@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     database: 'employee_tracker_db'
 });
 
-connection.connect(err => {
+connection.connect(function (err) {
     if (err) throw err;
     console.log('Connected to Employee Tracker.');
     //TODO Add function call to initialize app
@@ -19,7 +19,8 @@ connection.connect(err => {
 })
 
 function startTracker() {
-    inquirer.createPromptModule({
+    inquirer.prompt(
+        {
         name: 'action',
         type: 'list',
         message: 'What would you like to do?',
