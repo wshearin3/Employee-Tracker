@@ -71,8 +71,8 @@ function startTracker() {
             case 'Add an Employee':
                 addEmployee();
                 break;
-            case 'Add an Employee Role':
-                addEmployeeRole();
+            case 'Update an Employee Role':
+                updateRole();
                 break;
             case 'End Session':
                 console.log("Session Ended")
@@ -244,4 +244,49 @@ function addEmployee() {
             });
         });
     });
+}
+
+function updateRole() {
+    connection.query('SELECT * FROM employee', (err, res) => {
+        const employeeChoices = res.map(employees => ({
+            name: employees.first_name.concat(' ', employees.last_name),
+            value: employees.id
+        }));
+    connection.query('SELECT * FROM role', (err, res) => {
+        roleChoices = res.map(role => ({
+            name: role.title,
+            value: role.id
+        }));
+        return inquirer.prompt([
+            {
+                name:'employee',
+                type: 'list',
+                message: "Which employee's role would you like to update?",
+                choices: employeeChoices
+            },
+            {
+                name: 'role',
+                type: 'list',
+                message: "What is the employee's new role?",
+                choices: roleChoices
+            },
+        ]).then((answer) => {
+            connection.query('UPDATE employee SET ? WHERE ?',
+            [
+            {
+                role_id: answer.role,
+            },
+            {
+                id: answer.employee
+            }
+            ],
+            (err, res) => {
+                if (err) throw err;
+                console.log('Role successfully updated.');
+                startTracker();
+            }
+            );
+        });
+    });
+});
 }
