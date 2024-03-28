@@ -189,3 +189,59 @@ function addRole() {
     });
 });
 }
+
+// const mysql = require('mysql/promise');
+
+function addEmployee() {
+    connection.query('SELECT * FROM employee', (err, res) => {
+        const employeeChoices = res.map(employees => ({
+            name: employees.first_name.concat(' ', employees.last_name),
+            value: employees.id
+        }));
+    
+    connection.query('SELECT * FROM role', (err, res) => {
+        roleChoices = res.map(role => ({
+            name: role.title,
+            value: role.id
+        }));
+            return inquirer.prompt([
+                {
+                    name: 'first_name',
+                    type: 'input',
+                    message: "Please enter the employee's first name."
+                },
+                {
+                    name: 'last_name',
+                    type: 'input',
+                    message: "Please enter the employee's last name."
+                },
+                {
+                    name: 'role_id',
+                    type: 'list',
+                    message: 'Please select the role for this employee.',
+                    choices: roleChoices
+                },
+                {
+                    name: 'manager_id',
+                    type: 'list',
+                    message: "Please select the employee's manager.",
+                    choices: [...employeeChoices, {name: 'None', value: null}]
+                }
+            ]).then( (answer) => {
+            connection.query( 'INSERT INTO employee SET ?',
+            {
+                first_name: answer.first_name,
+                last_name: answer.last_name,
+                role_id: answer.role_id,
+                manager_id: answer.manager_id
+            },
+            (err, res) => {
+                if (err) throw err;
+                console.log('Employee successfully addded.');
+                startTracker();
+            }
+        );
+            });
+        });
+    });
+}
